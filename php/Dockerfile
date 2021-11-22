@@ -2,7 +2,7 @@ FROM php:7.2.7-fpm-alpine3.7
 
 RUN apk update
 RUN apk upgrade
-RUN apk add --no-cache libxml2
+RUN apk add --no-cache libxml2 libxml2-dev
 
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install json

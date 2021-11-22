@@ -4,7 +4,6 @@ RUN apk update
 RUN apk upgrade
 RUN apk add --no-cache libxml2 libxml2-dev
 
-RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install json
 RUN docker-php-ext-install mbstring
 RUN docker-php-ext-install pdo_mysql

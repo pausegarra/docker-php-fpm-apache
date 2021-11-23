@@ -19,7 +19,7 @@ services:
     restart: always
     image: mariadb:10.7.1
     volumes:
-      - ./mariadb:/var/lib/mysql
+      - mariadb_storage:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: "root"
       MYSQL_ROOT_HOST: '%'
@@ -31,3 +31,6 @@ services:
       - 8080:80
     environment:
       PMA_HOST: mariadb
+volumes:
+  test_db:
+    external: true

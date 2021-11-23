@@ -3,12 +3,31 @@ services:
   php:
     container_name: php-service
     build: './php/'
+    restart: always
     volumes:
       - ./public_html/:/var/www/html/
   apache:
     container_name: apache_service
     build: './apache/'
+    restart: always
     ports:
-      - "8080:80"
+      - "80:80"
     volumes:
       - ./public_html/:/var/www/html/
+  mariadb:
+    container_name: mariadb_service
+    restart: always
+    image: mariadb:10.7.1
+    volumes:
+      - ./mariadb:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_ROOT_HOST: '%'
+  phpmyadmin:
+    container_name: phpmyadmin_service
+    restart: always
+    image: phpmyadmin:5.1.1
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: mariadb
